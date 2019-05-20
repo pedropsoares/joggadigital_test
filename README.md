@@ -10,5 +10,5 @@ $ npm i
 ```
 ### Execução
 ```bash
-$ node src/index.js
+$ npm start
 ```
