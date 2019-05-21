@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app">
+
+    <head>
+        <title></title>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+        <script type="text/javascript" src="assets/js/app.js"></script>
+        <script type="text/javascript" src="assets/js/lead.ctrl.js"></script>
+        
+
+    </head>
+
+    <body ng-controller="leadCtrl">
+      <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Data</th>
+          <th>Ações</th>
+        </tr>
+        <tr ng-repeat="lead in leads">
+          <td ng-bind="lead.name"></td>
+          <td ng-bind="lead.email"></td>
+          <td ng-bind="lead.created_at | date: 'dd/MM/yyyy'"></td>
+          <td>
+            <button ng-click="deleteLead(lead._id)">Excluir</button>
+            <button ng-click="update(lead)">Editar</button>
+          </td>
+        </tr>
+      </table>
+      <button ng-click="create()">Criar lead</button>
+      <br>
+      <form ng-submit="isUpdating ? updateLead(formLead) : createLead(formLead)" ng-if="isUpdating || isCreating">
+        <label>Nome</label>
+        <input type="text" id="name" ng-model="formLead.name" required/>
+        <label>Email</label>
+        <input type="text" id="name" ng-model="formLead.email" required/>
+        <button type="submit">Salvar</button>
+        <button ng-click="clearFields()">Cancelar</button>
+      </form>
+    </body>
+
+</html>
