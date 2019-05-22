@@ -2,6 +2,17 @@
 <html lang="pt-br" ng-app="app">
 
     <head>
+
+        <meta charset="utf-8"
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
         <title></title>
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
@@ -12,33 +23,37 @@
     </head>
 
     <body ng-controller="leadCtrl">
-      <table cellpadding="2" cellspacing="2" border="1">
-        <tr>
-          <th>Nome</th>
-          <th>Email</th>
-          <th>Data</th>
-          <th>Ações</th>
-        </tr>
-        <tr ng-repeat="lead in leads">
-          <td ng-bind="lead.name"></td>
-          <td ng-bind="lead.email"></td>
-          <td ng-bind="lead.created_at | date: 'dd/MM/yyyy'"></td>
-          <td>
-            <button ng-click="deleteLead(lead._id)">Excluir</button>
-            <button ng-click="update(lead)">Editar</button>
-          </td>
-        </tr>
-      </table>
-      <button ng-click="create()">Criar lead</button>
-      <br>
-      <form ng-submit="isUpdating ? updateLead(formLead) : createLead(formLead)" ng-if="isUpdating || isCreating">
-        <label>Nome</label>
-        <input type="text" id="name" ng-model="formLead.name" required/>
-        <label>Email</label>
-        <input type="text" id="name" ng-model="formLead.email" required/>
-        <button type="submit">Salvar</button>
-        <button ng-click="clearFields()">Cancelar</button>
-      </form>
+      <div class="row">  
+        <div class="col s12 m6 push-m3"> 
+          <table cellpadding="2" cellspacing="2" border="1">
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Data</th>
+              <th>Ações</th>
+            </tr>
+            <tr ng-repeat="lead in leads">
+              <td ng-bind="lead.name"></td>
+              <td ng-bind="lead.email"></td>
+              <td ng-bind="lead.created_at | date: 'dd/MM/yyyy'"></td>
+              <td>
+                <button ng-click="deleteLead(lead._id)" class="btn-floating red modal-trigger"> <i class="material-icons">delete</i> </button>
+                <button ng-click="update(lead)" class="btn-floating orange"> <i class="material-icons">edit</i> </button>
+              </td>
+            </tr>
+          </table>
+          <button ng-click="create()" class="btn">Criar lead</button>
+          <br>
+          <form ng-submit="isUpdating ? updateLead(formLead) : createLead(formLead)" ng-if="isUpdating || isCreating">
+            <label>Nome</label>
+            <input type="text" id="name" ng-model="formLead.name" required/>
+            <label>Email</label>
+            <input type="text" id="name" ng-model="formLead.email" required/>
+            <button type="submit">Salvar</button>
+            <button ng-click="clearFields()">Cancelar</button>
+          </form>
+      </div>
+      </div>
     </body>
 
 </html>
